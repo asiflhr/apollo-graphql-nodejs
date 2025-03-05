@@ -35,7 +35,7 @@ async function startApolloServer() {
         user: async (todo) =>
           (
             await axios.get(
-              `https://jsonplaceholder.typicode.com/users/${todo.id}`
+              `https://jsonplaceholder.typicode.com/users/${todo.userId}`
             )
           ).data,
       },

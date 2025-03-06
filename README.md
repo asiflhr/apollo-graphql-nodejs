@@ -16,17 +16,17 @@ A full-stack **GraphQL-based Todo App** built with:
 ## 📂 Project Structure
 ```
 
-/graphql-backend (Node.js & Apollo Server)
-├── server.js (GraphQL API with Apollo Server)
+/server (Node.js & Apollo Server)
+├── index.js (GraphQL API with Apollo Server)
 ├── package.json (Dependencies & Scripts)
 ├── README.md (Instructions)
 
-/frontend (React.js & Vite)
+/client (React.js & Vite)
 ├── src
 │ ├── App.jsx (React UI with Apollo Query)
 │ ├── TodoCard.jsx (Styled Todo Component)
 │ ├── index.css (Tailwind Styles)
-├── package.json (Dependencies & Scripts)
+| ├── package.json (Dependencies & Scripts)
 ├── README.md (Instructions)
 
 ````
@@ -37,18 +37,18 @@ A full-stack **GraphQL-based Todo App** built with:
 
 ### 📦 1️⃣ Clone the Repository
 ```sh
-git clone https://github.com/your-repo/graphql-todo-app.git
-cd graphql-todo-app
+git clone https://github.com/asiflhr/apollo-graphql-nodejs.git
+cd apollo-graphql-nodejs
 ````
 
 ---
 
 ## 📡 Backend Setup (Node.js + GraphQL)
 
-1️⃣ **Navigate to the backend folder**
+1️⃣ **Navigate to the server folder**
 
 ```sh
-cd graphql-backend
+cd server
 ```
 
 2️⃣ **Install dependencies**
@@ -60,7 +60,7 @@ npm install
 3️⃣ **Run the server using Nodemon**
 
 ```sh
-npm run dev
+npm start
 ```
 
 > 🔹 The server runs at: **http://localhost:8000/graphql**  
@@ -70,10 +70,10 @@ npm run dev
 
 ## 🎨 Frontend Setup (React + Vite)
 
-1️⃣ **Navigate to the frontend folder**
+1️⃣ **Navigate to the client folder**
 
 ```sh
-cd ../frontend
+cd ../client
 ```
 
 2️⃣ **Install dependencies**
@@ -104,7 +104,10 @@ query {
     completed
     user {
       name
+      username
       email
+      phone
+      website
     }
   }
 }
@@ -117,7 +120,10 @@ query {
   getAllUsers {
     id
     name
+    username
     email
+    phone
+    website
   }
 }
 ```
@@ -130,6 +136,8 @@ query {
     name
     username
     email
+    phone
+    website
   }
 }
 ```

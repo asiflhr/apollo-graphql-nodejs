@@ -5,6 +5,9 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const axios = require('axios')
 
+const { USER } = require('./user')
+const { TODO } = require('./todo')
+
 async function startApolloServer() {
   const app = express()
 
@@ -31,22 +34,28 @@ async function startApolloServer() {
       }
     `,
     resolvers: {
+      // Todo: {
+      //   user: async (todo) =>
+      //     (
+      //       await axios.get(
+      //         `https://jsonplaceholder.typicode.com/users/${todo.userId}`
+      //       )
+      //     ).data,
+      // },
       Todo: {
-        user: async (todo) =>
-          (
-            await axios.get(
-              `https://jsonplaceholder.typicode.com/users/${todo.userId}`
-            )
-          ).data,
+        user: (todo) => USER.find((e) => e.id === todo.id),
       },
       Query: {
-        getTodos: async () =>
-          (await axios.get('https://jsonplaceholder.typicode.com/todos')).data,
-        getAllUsers: async () =>
-          (await axios.get('https://jsonplaceholder.typicode.com/users')).data,
-        getUser: async (parent, { id }) =>
-          (await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`))
-            .data,
+        // getTodos: async () =>
+        //   (await axios.get('https://jsonplaceholder.typicode.com/todos')).data,
+        // getAllUsers: async () =>
+        //   (await axios.get('https://jsonplaceholder.typicode.com/users')).data,
+        // getUser: async (parent, { id }) =>
+        //   (await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`))
+        //     .data,
+        getTodos: () => TODO,
+        getAllUsers: () => USER,
+        getUser: async (parent, { id }) => USER.find((e) => e.id === id),
       },
     },
   })
